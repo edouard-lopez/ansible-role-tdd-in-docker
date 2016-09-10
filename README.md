@@ -15,3 +15,8 @@ result:
 		Running tests in ./test_playbook.sh
 		Running test_root_has_no_password... SUCCESS
 
+### `secrets.yml`
+
+Edit the vault with `password` as password:
+
+		ansible-vault edit ./secrets.yml
