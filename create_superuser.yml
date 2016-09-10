@@ -1,0 +1,23 @@
+---
+- hosts: all
+  become: yes
+  become_user: root
+
+  vars:
+    SSH_PORT: 22
+    DEFAULT_PACKAGES:
+      - ufw
+      - fail2ban
+    ansible_python_interpreter: "/usr/local/bin/python"
+  tasks:
+    - include_vars: secrets.yml
+
+    - debug: msg="Admin username {{ ADMIN_USERNAME }}"
+    - debug: msg="Ssh port {{ SSH_PORT }}"
+
+    - name: remove root password
+      shell: passwd -d root 
+
+    - name: add admin user
+      user: name={{ ADMIN_USERNAME }} password={{ ADMIN_PASSWORD | password_hash('sha512') }} shell=/bin/bash
+
