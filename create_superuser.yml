@@ -5,9 +5,6 @@
 
   vars:
     SSH_PORT: 22
-    DEFAULT_PACKAGES:
-      - ufw
-      - fail2ban
     ansible_python_interpreter: "/usr/local/bin/python"
   tasks:
     - include_vars: secrets.yml
